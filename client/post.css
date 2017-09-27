@@ -1,0 +1,88 @@
+.post {
+  position: relative;
+  padding: 20px 15px;
+  margin: 30px;
+  border-top: 2.5px solid #8c8b8b;
+}
+
+.post-title {
+  font-weight: bold;
+  display: inline;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: white;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.allPosts {
+  margin-top: 50px;
+}
+
+.box-titles {
+  margin: 10px;
+}
+
+.input-box {
+  display: block;
+  margin: 10px;
+}
+
+.delete {
+  float: right;
+  font-weight: bold;
+  background: #7192c6;
+  color: #FFF;
+  font-size: 1em;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  margin-top: -13px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  vertical-align: top;
+}
+
+.delete:hover {background-color: #5c81bc}
+
+.delete:active {
+  background-color: #506e9e;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+}
+
+.arrowUp {
+  display:none;
+}
+
+#body {
+  height: 80px;
+  width: 300px;
+  font-size: 20px;
+}
+
+#title {
+  height: 30px;
+  width: 450px;
+  font-size: 20px;
+}
+
+#submitPost {
+  height: 40px;
+  width: 60px;
+  float: left;
+  font-weight: bold;
+  background: #7192c6;
+  color: #FFF;
+  font-size: 1em;
+  padding: 3px 60px 3px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

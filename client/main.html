@@ -1,0 +1,38 @@
+<head>
+  <title>ethereum-forum</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Forum</h1>
+      <form class="new-post">
+        <div>
+          <label class="box-titles" for="title">Title</label>
+          <input class="input-box" id="title" type="text" name="title" placeholder="Title">
+        </div>
+        <div>
+          <label class="box-titles" for="body">Body</label>
+          <textarea class="input-box" id="body" name="body" placeholder="Write your question..." rows="50" columns="100"></textarea>
+        </div>
+        <div>
+          <input class="input-box" id="submitPost" type="submit" value="Post">
+        </div>
+      </form>
+    </header>
+    <div class="allPosts">
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </div>
+  </div>
+</body>
+
+<template name="post">
+  <div class="post">
+    <span class="post-title">Title: {{title}}</span>
+    <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
+    <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
+    <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
+  </div>
+</template>

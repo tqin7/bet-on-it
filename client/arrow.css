@@ -1,0 +1,45 @@
+.arrow-down {
+  width: 30px;
+  height: 30px;
+  background: #6f8cbc;
+  position: relative;
+  float: right;
+  margin-right: 20px;
+  margin-top: 0px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.arrow-down.active {
+  background: #81858c;
+}
+
+.arrow-down:before, .arrow-down:after {
+  content: "";
+  display: inline;
+  width: 12px;
+  height: 3px;
+  background: white;
+  position: absolute;
+  top: 12px;
+  transition: transform .4s;
+}
+
+.arrow-down:after {
+  right: 13px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  transform: rotate(45deg);
+}
+
+.arrow-down:before {
+  right: 6px;
+  transform: rotate(-45deg);
+}
+
+.arrow-down.active:after {
+  transform: rotate(-45deg);
+}
+
+.arrow-down.active:before {
+  transform: rotate(45deg);
+}
