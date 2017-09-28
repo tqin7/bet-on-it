@@ -22,18 +22,18 @@ contract Forum {
 	}
 
 	modifier approved(address _account) {
-		require(mapping[account] > 0);
+		require(contributions[_account] > 0);
 		_;
 	}
 
-	function Forum() payable {
+	function Forum() public payable {
 		creator = msg.sender;
 		totalFund = 0;
 		numActive = 1;
 		contributions[creator] = msg.value;
 	}
 
-	function approveAccount() payable hasValue {
+	function approveAccount() external payable hasValue {
 		numActive += 1;
 		totalFund += msg.value;
 		contributions[msg.sender] += msg.value;
@@ -42,13 +42,13 @@ contract Forum {
 		FundReceived(msg.value);
 	}
 
-	function upVote() approved(msg.sender) returns (uint8){
+	function upVote() external view approved(msg.sender) returns (uint8){
 		return 1;
 	}
 
-	function reward(address _recipient, bool creator, uint supporters) onlyBy(creator) returns (bool) {
+	function reward(address _recipient, bool _creator, uint supporters) external onlyBy(creator) returns (bool) {
 		uint amount = contributions[_recipient] * contributions[_recipient] / totalFund;
-		if (!creator) {
+		if (!_creator) {
 			amount = amount / supporters;
 		}
 		if (!_recipient.send(amount)) {
@@ -58,7 +58,7 @@ contract Forum {
 		return true;
 	}
 
-	function withdraw() approved(msg.sender) returns (bool) {
+	function withdraw() external approved(msg.sender) returns (bool) {
 		uint amount = contributions[msg.sender];
 		if (!msg.sender.send(amount)) {
 			return false;
@@ -69,13 +69,13 @@ contract Forum {
 		return true;
 	}
 
-	function() payable {
+	function() public payable {
 		contributions[msg.sender] += msg.value;
 		totalFund += msg.value;
 		FundReceived(msg.value);
 	}
 
-	function destroy() onlyBy(creator) {
+	function destroy() public onlyBy(creator) {
 		require(numActive == 1);
 		selfdestruct(creator);
 	}

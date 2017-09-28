@@ -15,16 +15,20 @@ Template.body.events({
 	'submit .new-post': function(event) {
 		var title = event.target.title.value;
 		var body = event.target.body.value;
-		Posts.insert({
-			title: title, 
-			body: body,
-			arrowUp: false,
-			date: new Date()
-		});
-		console.log("added new post");
-		event.target.title.value = "";
-		event.target.body.value = "";
+		if (title != "" && body != "") {
+			Posts.insert({
+				title: title, 
+				body: body,
+				arrowUp: false,
+				date: new Date()
+			});
 
+			event.target.title.value = "";
+			event.target.body.value = "";
+		} else {
+			alert("Please fill out both fields.");
+		}
+		
 		return false;
 	},
 });
