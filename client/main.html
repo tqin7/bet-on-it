@@ -39,6 +39,11 @@
       {{/each}}
     </div>
   </div>
+  <div class="events">
+    {{#each events}}
+        {{> event}}
+    {{/each}}
+  </div>
 </body>
 
 <template name="post">
@@ -46,10 +51,13 @@
     <span class="post-title">Title: {{title}}</span>
     <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
     <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
+    <button class="upvote"><span>upvote</span> <span>{{likes}}</span></button>
     <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
   </div>
 </template>
 
-<template name="account-control">
-  
+<template name="event">
+  <div class="event">
+    <span class="desc">Event: {{desc}}</span>
+  </div>
 </template>

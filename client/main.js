@@ -4,10 +4,10 @@ import { Template } from 'meteor/templating';
 import './main.html';
 
 Posts = new Mongo.Collection('posts');
+Events = new Mongo.Collection('events');
 
-const fs = require("fs");
-//const solc = require('solc');
-contractAddr = '0xD0E6DB11747A682189CAB1d014e2fC5528A3A36b';
+//const fs = require("fs");
+contractAddr = '0xd6c5FfA00c35a1313c4D03505A23EFA685B2cD66';
 abi = [ { constant: false,
     inputs: [],
     name: 'withdraw',
@@ -40,12 +40,12 @@ abi = [ { constant: false,
     stateMutability: 'nonpayable',
     type: 'function',
     signature: '0xbdf6907d' },
-  { constant: true,
+  { constant: false,
     inputs: [],
     name: 'upVote',
-    outputs: [ [Object] ],
+    outputs: [],
     payable: false,
-    stateMutability: 'view',
+    stateMutability: 'nonpayable',
     type: 'function',
     signature: '0xeed7c128' },
   { inputs: [],
@@ -73,18 +73,55 @@ abi = [ { constant: false,
     inputs: [ [Object] ],
     name: 'AccountDeactivated',
     type: 'event',
-    signature: '0x21831c2238658baa66ab1895cb18bdeaf2bea535a3df6126b7ada38425748375' } ];
+    signature: '0x21831c2238658baa66ab1895cb18bdeaf2bea535a3df6126b7ada38425748375' },
+  { anonymous: false,
+    inputs: [ [Object] ],
+    name: 'Upvote',
+    type: 'event',
+    signature: '0x3c61bd115078be418fc54c0576aedde0714d9fe6e1829cc7d57fcaab45e6a5eb' } ];
 var myContract = web3.eth.contract(abi);
 var myForum = myContract.at(contractAddr);
+var events = myForum.allEvents();
+var FundReceived = myForum.FundReceived({}, {fromBlock: 0, toBlock: 'latest'});
+FundReceived.watch(function(err, e) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('FundReceived');
+    }
+});
+events.watch(function(error, event){
+    if (error) {
+        console.log("Error: " + error);
+    } else {
+        console.log(event.event + ": " + JSON.stringify(event.args));
+    }
+});
+myForum.FundReceived().watch(function(err, rs) {
+    console.log(res);
+})
+myForum.FundSent().watch(function(err, rs) {
+    console.log(res);
+})
+
 
 Template.body.helpers({
 	posts: function() {
 		return Posts.find();
 	},
+    events: function() {
+        console.log("obtaining events");        
+        return Events.find({}, {
+            limit: 10,
+            sort: { created: -1 }
+        });
+        
+    },
 });
 
 Template.body.events({
 	'submit .new-post': function(event) {
+        console.log(events);
 		var title = event.target.title.value;
 		var body = event.target.body.value;
 		if (title != "" && body != "") {
@@ -92,6 +129,7 @@ Template.body.events({
 				title: title, 
 				body: body,
 				arrowUp: false,
+                likes: 0,
 				date: new Date()
 			});
 
@@ -109,14 +147,6 @@ Template.body.events({
 		if (amount <= 0) {
 			alert("Please specify amount of ether");
 		} else {
-			/*
-			web3.eth.sendTransaction(
-				{to: myForum.address,
-				value: web3.toWei(amount, "ether")}, 
-				function(err, res) {
-					console.log(res);
-				});
-			*/
 			myForum.approveAccount({value: amount}, 
 				function(err, res) {
 					console.log(res);
@@ -143,4 +173,18 @@ Template.post.events({
 		Posts.remove(this._id);
 		console.log("deleted post ", this._id);
 	},
+    'click .upvote': function(event) {
+        console.log("upvote clicked");
+        var id = this._id;
+        var orlikes = this.likes;
+        myForum.upVote(function(err, res) {
+            console.log("result from upvote returned: " + res);
+            if (res) {
+                console.log("updating likes");
+                Posts.update(id, {$set: {likes: orlikes+1}});
+            } else {
+                alert("Your account is not approved.\n Approve by depositing ether");
+            }
+        });
+    }
 });

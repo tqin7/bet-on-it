@@ -10,6 +10,7 @@ contract Forum {
 	event FundReceived(uint amount);
 	event FundSent(address recipient, uint amount);
 	event AccountDeactivated(address account);
+	event Upvote(address voter);
 
 	modifier onlyBy(address _account) {
 		require(msg.sender == _account);
@@ -42,8 +43,8 @@ contract Forum {
 		FundReceived(msg.value);
 	}
 
-	function upVote() external view approved(msg.sender) returns (uint8){
-		return 1;
+	function upVote() external approved(msg.sender) {
+		Upvote(msg.sender);
 	}
 
 	function reward(address _recipient, bool _creator, uint supporters) external onlyBy(creator) returns (bool) {

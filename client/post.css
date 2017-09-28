@@ -31,16 +31,28 @@
   margin: 10px;
 }
 
+.upvote {
+  background-color: #a6c3d8;
+  color: #21545e;
+  padding: 4px 7px;
+  border: none;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: Chalkboard;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
 .delete {
   float: right;
   font-weight: bold;
   background: #7192c6;
   color: #FFF;
   font-size: 1em;
-  padding: 5px 12px;
+  padding: 3px 7px;
   border: none;
   border-radius: 4px;
-  margin-top: -13px;
+  margin-top: 0px;
   margin-bottom: 20px;
   margin-right: 5px;
   margin-left: 5px;
