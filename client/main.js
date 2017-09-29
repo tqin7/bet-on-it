@@ -7,8 +7,32 @@ Posts = new Mongo.Collection('posts');
 Events = new Mongo.Collection('events');
 
 //const fs = require("fs");
-contractAddr = '0xd6c5FfA00c35a1313c4D03505A23EFA685B2cD66';
+contractAddr = '0xBEFD679425BCe57EE0911BA78E6c768B428446Ee';
 abi = [ { constant: false,
+    inputs: [ [Object] ],
+    name: 'deletePost',
+    outputs: [],
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    signature: '0x094cd5ee' },
+  { constant: false,
+    inputs: [ [Object] ],
+    name: 'registerPost',
+    outputs: [],
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    signature: '0x1c951250' },
+  { constant: false,
+    inputs: [],
+    name: 'postRequest',
+    outputs: [],
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    signature: '0x225dda53' },
+  { constant: false,
     inputs: [],
     name: 'withdraw',
     outputs: [ [Object] ],
@@ -78,10 +102,26 @@ abi = [ { constant: false,
     inputs: [ [Object] ],
     name: 'Upvote',
     type: 'event',
-    signature: '0x3c61bd115078be418fc54c0576aedde0714d9fe6e1829cc7d57fcaab45e6a5eb' } ];
+    signature: '0x3c61bd115078be418fc54c0576aedde0714d9fe6e1829cc7d57fcaab45e6a5eb' },
+  { anonymous: false,
+    inputs: [ [Object], [Object] ],
+    name: 'PostRegistered',
+    type: 'event',
+    signature: '0x472c781940a78a3f6869d289277d9a5bd51de8e603b13535987dd5dd8129aa1d' },
+  { anonymous: false,
+    inputs: [ [Object] ],
+    name: 'PostRequest',
+    type: 'event',
+    signature: '0x2d645b9ef46a25e3a0066be653c1f52fe444bb261bde3e6a6257f8def714be15' },
+  { anonymous: false,
+    inputs: [ [Object] ],
+    name: 'PostDeleted',
+    type: 'event',
+    signature: '0x32d67e2131cd025eb20e7256680e338dedbe17b28943a11681860a9271ad119d' } ];
 var myContract = web3.eth.contract(abi);
 var myForum = myContract.at(contractAddr);
 
+/*
 var events = myForum.allEvents();
 var FundReceived = myForum.FundReceived({}, {fromBlock: 0, toBlock: 'latest'});
 FundReceived.watch(function(err, e) {
@@ -104,7 +144,9 @@ myForum.FundReceived().watch(function(err, rs) {
 myForum.FundSent().watch(function(err, rs) {
     console.log(res);
 })
+*/
 
+idTracker = 1;
 
 Template.body.helpers({
 	posts: function() {
@@ -124,28 +166,38 @@ Template.body.events({
 	'submit .new-post': function(event) {
 		var title = event.target.title.value;
 		var body = event.target.body.value;
+        console.log("register post sent");
 		if (title != "" && body != "") {
-            myForum.postRequest({
+            console.log("sending post request");
+            myForum.postRequest(
                 function(err, res) {
+                    console.log("request processed");
                     if (res) {
                         var curId = Posts.insert({
                             title: title, 
                             body: body,
                             arrowUp: false,
                             likes: 0,
+                            pseudoId: idTracker,
                             date: new Date()
                         });
                         console.log(curId);
-                        myForum.registerPost(curId);
+                        /*
+                        myForum.registerPost(1, 
+                            function(err, res) {
+                                console.log("successfully registered");
+                            });
+                        */
                         event.target.title.value = "";
                         event.target.body.value = "";
-                        
+                        console.log("idTracker is " + idTracker);
+                        idTracker += 1;
                     } else {
                         alert("Your account is not approved.\n Approve by depositing ether");
+                        return false
                     }
                 }
-            });
-			
+            );
 		} else {
 			alert("Please fill out both fields.");
 		}
@@ -182,7 +234,11 @@ Template.post.events({
 	},
 	'click .delete': function() {
         var id = this._id;
-        myForum.deletePost(id, function(err, res) {
+        var pseuId = this.pseudoId;
+        console.log("delete sending");
+        Posts.remove(id);
+        /*
+        myForum.deletePost(pseuId, function(err, res) {
             if (res) {
                 Posts.remove(id);
                 console.log("deleted post ", id);
@@ -190,6 +246,7 @@ Template.post.events({
                 alert("Not authorized to delete this post.")
             }
         });
+        */
 	},
     'click .upvote': function(event) {
         console.log("upvote clicked");

@@ -3,7 +3,7 @@ pragma solidity ^0.4.11;
 contract Forum {
 	struct User {
 		uint deposit;
-		bytes32[] posts;
+		uint[] posts;
 	}
 
 	address private creator;
@@ -16,9 +16,9 @@ contract Forum {
 	event FundSent(address _recipient, uint _amount);
 	event AccountDeactivated(address _account);
 	event Upvote(address _voter);
-	event PostRegistered(address _account, bytes32 _id);
+	event PostRegistered(address _account, uint _id);
 	event PostRequest(address _account);
-	event PostDeleted(bytes32 _id);
+	event PostDeleted(uint _id);
 
 	modifier onlyBy(address _account) {
 		require(msg.sender == _account);
@@ -35,7 +35,7 @@ contract Forum {
 		_;
 	}
 
-	modifier createdPost(address _account, bytes32 _id) {
+	modifier createdPost(address _account, uint _id) {
 		bool approve = false;
 		for (uint i = 0; i < users[_account].posts.length; i++) {
 			if (_id == users[_account].posts[i]) {
@@ -57,7 +57,8 @@ contract Forum {
 	function approveAccount() external payable hasValue {
 		numActive += 1;
 		totalFund += msg.value;
-		users[msg.sender.deposit += msg.value;
+		users[msg.sender].deposit += msg.value;
+		
 
 		AccountApproved(msg.sender);
 		FundReceived(msg.value);
@@ -67,7 +68,7 @@ contract Forum {
 		PostRequest(msg.sender);
 	}
 
-	function registerPost(bytes32 id) external approved(msg.sender) {
+	function registerPost(uint id) external approved(msg.sender) {
 		users[msg.sender].posts.push(id);
 		PostRegistered(msg.sender, id);
 	}
@@ -98,10 +99,10 @@ contract Forum {
 		AccountDeactivated(msg.sender);
 	}
 
-	function deletePost(bytes32 postId) external approved(msg.sender) createdPost(msg.sender, postId) {
-		for (uint i = 0; i < users[_account].posts.length; i++) {
-			if (_id == users[_account].posts[i]) {
-				users[_account].posts[i] = "";
+	function deletePost(uint postId) external approved(msg.sender) createdPost(msg.sender, postId) {
+		for (uint i = 0; i < users[msg.sender].posts.length; i++) {
+			if (postId == users[msg.sender].posts[i]) {
+				delete users[msg.sender].posts[i];
 				break;
 			}
 		}
