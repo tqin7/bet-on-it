@@ -54,8 +54,8 @@ textarea:focus{
 }
 
 #send {
-  margin-top: 1px;
-  float: left;
+  margin-top: 2px;
+  margin-right: 2px;
   margin-left: 20px;
 }
 

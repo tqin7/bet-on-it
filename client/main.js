@@ -121,20 +121,29 @@ Template.body.helpers({
 
 Template.body.events({
 	'submit .new-post': function(event) {
-        console.log(events);
 		var title = event.target.title.value;
 		var body = event.target.body.value;
 		if (title != "" && body != "") {
-			Posts.insert({
-				title: title, 
-				body: body,
-				arrowUp: false,
-                likes: 0,
-				date: new Date()
-			});
-
-			event.target.title.value = "";
-			event.target.body.value = "";
+            myForum.postRequest({
+                function(err, res) {
+                    if (res) {
+                        var curId = Posts.insert({
+                            title: title, 
+                            body: body,
+                            arrowUp: false,
+                            likes: 0,
+                            date: new Date()
+                        });
+                        console.log(curId);
+                        event.target.title.value = "";
+                        event.target.body.value = "";
+                        //send id to the contract
+                    } else {
+                        alert("Your account is not approved.\n Approve by depositing ether");
+                    }
+                }
+            });
+			
 		} else {
 			alert("Please fill out both fields.");
 		}

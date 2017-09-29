@@ -11,6 +11,8 @@ contract Forum {
 	event FundSent(address recipient, uint amount);
 	event AccountDeactivated(address account);
 	event Upvote(address voter);
+	event Post(address account);
+	event PostRequest(address account);
 
 	modifier onlyBy(address _account) {
 		require(msg.sender == _account);
@@ -41,6 +43,10 @@ contract Forum {
 
 		AccountApproved(msg.sender);
 		FundReceived(msg.value);
+	}
+
+	function postRequest() external approved(msg.sender) {
+		PostRequest(msg.sender);
 	}
 
 	function upVote() external approved(msg.sender) {
