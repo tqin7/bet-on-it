@@ -81,6 +81,7 @@ abi = [ { constant: false,
     signature: '0x3c61bd115078be418fc54c0576aedde0714d9fe6e1829cc7d57fcaab45e6a5eb' } ];
 var myContract = web3.eth.contract(abi);
 var myForum = myContract.at(contractAddr);
+
 var events = myForum.allEvents();
 var FundReceived = myForum.FundReceived({}, {fromBlock: 0, toBlock: 'latest'});
 FundReceived.watch(function(err, e) {
@@ -135,9 +136,10 @@ Template.body.events({
                             date: new Date()
                         });
                         console.log(curId);
+                        myForum.registerPost(curId);
                         event.target.title.value = "";
                         event.target.body.value = "";
-                        //send id to the contract
+                        
                     } else {
                         alert("Your account is not approved.\n Approve by depositing ether");
                     }
@@ -179,12 +181,20 @@ Template.post.events({
 		console.log("updated arrowUp");
 	},
 	'click .delete': function() {
-		Posts.remove(this._id);
-		console.log("deleted post ", this._id);
+        var id = this._id;
+        myForum.deletePost(id, function(err, res) {
+            if (res) {
+                Posts.remove(id);
+                console.log("deleted post ", id);
+            } else {
+                alert("Not authorized to delete this post.")
+            }
+        });
 	},
     'click .upvote': function(event) {
         console.log("upvote clicked");
         var id = this._id;
+        console.log("ID is " + id);
         var orlikes = this.likes;
         myForum.upVote(function(err, res) {
             console.log("result from upvote returned: " + res);
