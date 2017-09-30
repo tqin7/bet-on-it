@@ -36,7 +36,7 @@ textarea:focus{
 
 .send-and-withdraw {
   float: right;
-  margin: 30px 0px;
+  margin: 0px 0px;
 }
 
 #etherAmount {
@@ -60,8 +60,12 @@ textarea:focus{
 }
 
 #withdraw {
-  margin: 10px;
-  margin-top: 15px;
+  margin: 1px;
+  margin-top: 3px;
   float: right;
   display: block;
+}
+
+#contractBalance {
+  display: inline;
 }

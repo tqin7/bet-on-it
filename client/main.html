@@ -6,7 +6,7 @@
   <div class="container">
     <header>
       <h1>Forum</h1>
-
+      <div id="contractBalance">Total Balance: {{contractBalance}}</div>
       <div class="send-and-withdraw">
         <div class="send-ether">
           <form class="send-ether">
@@ -15,7 +15,10 @@
           </form>
         </div>
         <div class="withdraw-ether">
-          <button class="delete" id="withdraw"><span>Withdraw Funds</span></button>
+          <form class="withdraw-ether">
+            <input id="etherAmount" type="number" name="etherAmount" placeholder="Amount of ether">
+            <input class="delete" id="withdraw" type="submit" value="Withdraw Ether">
+          </form>
         </div>
       </div>
       

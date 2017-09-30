@@ -5,132 +5,15 @@ import './main.html';
 
 Posts = new Mongo.Collection('posts');
 Events = new Mongo.Collection('events');
+Deposits = new Mongo.Collection('deposits');
 
-//const fs = require("fs");
-contractAddr = '0xBEFD679425BCe57EE0911BA78E6c768B428446Ee';
-abi = [ { constant: false,
-    inputs: [ [Object] ],
-    name: 'deletePost',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x094cd5ee' },
-  { constant: false,
-    inputs: [ [Object] ],
-    name: 'registerPost',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x1c951250' },
-  { constant: false,
-    inputs: [],
-    name: 'postRequest',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x225dda53' },
-  { constant: false,
-    inputs: [],
-    name: 'withdraw',
-    outputs: [ [Object] ],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x3ccfd60b' },
-  { constant: false,
-    inputs: [],
-    name: 'destroy',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x83197ef0' },
-  { constant: false,
-    inputs: [],
-    name: 'approveAccount',
-    outputs: [],
-    payable: true,
-    stateMutability: 'payable',
-    type: 'function',
-    signature: '0x9e5e5b68' },
-  { constant: false,
-    inputs: [ [Object], [Object], [Object] ],
-    name: 'reward',
-    outputs: [ [Object] ],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0xbdf6907d' },
-  { constant: false,
-    inputs: [],
-    name: 'upVote',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0xeed7c128' },
-  { inputs: [],
-    payable: true,
-    stateMutability: 'payable',
-    type: 'constructor',
-    signature: 'constructor' },
-  { payable: true, stateMutability: 'payable', type: 'fallback' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'AccountApproved',
-    type: 'event',
-    signature: '0xbc7abdf8533487db28f8c616affbb4e122d90c5ab8deb258fd21b09cee595730' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'FundReceived',
-    type: 'event',
-    signature: '0xa0d9716a1b7e5a3d361b0aff5b4ac71d21ba9a2cffe7c41d684d3d12d8f8c508' },
-  { anonymous: false,
-    inputs: [ [Object], [Object] ],
-    name: 'FundSent',
-    type: 'event',
-    signature: '0x228867b0ebf23ada4ac001990d80ed59681ae5e0dfd98f49c70d5bc224240fec' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'AccountDeactivated',
-    type: 'event',
-    signature: '0x21831c2238658baa66ab1895cb18bdeaf2bea535a3df6126b7ada38425748375' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'Upvote',
-    type: 'event',
-    signature: '0x3c61bd115078be418fc54c0576aedde0714d9fe6e1829cc7d57fcaab45e6a5eb' },
-  { anonymous: false,
-    inputs: [ [Object], [Object] ],
-    name: 'PostRegistered',
-    type: 'event',
-    signature: '0x472c781940a78a3f6869d289277d9a5bd51de8e603b13535987dd5dd8129aa1d' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'PostRequest',
-    type: 'event',
-    signature: '0x2d645b9ef46a25e3a0066be653c1f52fe444bb261bde3e6a6257f8def714be15' },
-  { anonymous: false,
-    inputs: [ [Object] ],
-    name: 'PostDeleted',
-    type: 'event',
-    signature: '0x32d67e2131cd025eb20e7256680e338dedbe17b28943a11681860a9271ad119d' } ];
+contractAddr = '0xBbF02fCDb3AEc08bed5E2b3ffE9B4b4e13B89F68';
+abi = [{"constant":false,"inputs":[],"name":"postRequest","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"withdraw","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"postId","type":"string"}],"name":"deletePost","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"balanceCheck","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"destroy","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"string"}],"name":"registerPost","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"approveAccount","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_recipient","type":"address"},{"name":"_creator","type":"bool"},{"name":"supporters","type":"uint256"}],"name":"reward","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"upVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":true,"stateMutability":"payable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_account","type":"address"}],"name":"AccountApproved","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_amount","type":"uint256"}],"name":"FundReceived","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_recipient","type":"address"},{"indexed":false,"name":"_amount","type":"uint256"}],"name":"FundSent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_account","type":"address"}],"name":"AccountDeactivated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_voter","type":"address"}],"name":"Upvote","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_account","type":"address"},{"indexed":false,"name":"_id","type":"string"}],"name":"PostRegistered","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_account","type":"address"}],"name":"PostRequest","type":"event"}];
 var myContract = web3.eth.contract(abi);
 var myForum = myContract.at(contractAddr);
 
-/*
+
 var events = myForum.allEvents();
-var FundReceived = myForum.FundReceived({}, {fromBlock: 0, toBlock: 'latest'});
-FundReceived.watch(function(err, e) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('FundReceived');
-    }
-});
 events.watch(function(error, event){
     if (error) {
         console.log("Error: " + error);
@@ -138,27 +21,25 @@ events.watch(function(error, event){
         console.log(event.event + ": " + JSON.stringify(event.args));
     }
 });
-myForum.FundReceived().watch(function(err, rs) {
-    console.log(res);
-})
-myForum.FundSent().watch(function(err, rs) {
-    console.log(res);
-})
-*/
 
-idTracker = 1;
 
 Template.body.helpers({
 	posts: function() {
 		return Posts.find();
 	},
-    events: function() {
-        console.log("obtaining events");        
+    events: function() {     
         return Events.find({}, {
             limit: 10,
             sort: { created: -1 }
         });
         
+    },
+    contractBalance: function() {
+        var total = 0;
+        Deposits.find().forEach(function(obj) {
+            total += parseInt(obj.money);
+        })
+        return total;
     },
 });
 
@@ -166,10 +47,9 @@ Template.body.events({
 	'submit .new-post': function(event) {
 		var title = event.target.title.value;
 		var body = event.target.body.value;
-        console.log("register post sent");
 		if (title != "" && body != "") {
             console.log("sending post request");
-            myForum.postRequest(
+            myForum.postRequest.call(
                 function(err, res) {
                     console.log("request processed");
                     if (res) {
@@ -178,23 +58,16 @@ Template.body.events({
                             body: body,
                             arrowUp: false,
                             likes: 0,
-                            pseudoId: idTracker,
                             date: new Date()
                         });
-                        console.log(curId);
-                        /*
-                        myForum.registerPost(1, 
+                        myForum.registerPost(curId, 
                             function(err, res) {
                                 console.log("successfully registered");
                             });
-                        */
                         event.target.title.value = "";
                         event.target.body.value = "";
-                        console.log("idTracker is " + idTracker);
-                        idTracker += 1;
                     } else {
-                        alert("Your account is not approved.\n Approve by depositing ether");
-                        return false
+                        alert("Your account is not approved.\nApprove by depositing ether");
                     }
                 }
             );
@@ -206,39 +79,53 @@ Template.body.events({
 	},
 	'submit .send-ether': function(event) {
 		var amount = event.target.etherAmount.value;
-		amount = web3.toWei(amount, "ether")
+		weiAmount = web3.toWei(amount, "ether")
 		if (amount <= 0) {
 			alert("Please specify amount of ether");
 		} else {
-			myForum.approveAccount({value: amount}, 
+			myForum.approveAccount({value: weiAmount}, 
 				function(err, res) {
-					console.log(res);
+                    Deposits.insert({money: amount});
 				});
 			event.target.etherAmount.value = "";
 		}
 		return false;
 	}, 
-	'click #withdraw': function() {
-		console.log("withdraw initiated");
-		myForum.withdraw(
-			function(err, res) {
-				console.log(res);
-			});
+	'submit .withdraw-ether': function(event) {
+        var amount = event.target.etherAmount.value;
+        var weiAmount = web3.toWei(amount, "ether")
+        if (amount <= 0) {
+            alert("Please specify positive amount of ether");
+        } else {
+            myForum.withdraw(weiAmount,
+                function(err, res) {
+                    if (res) {
+                        Deposits.insert({money: 0-amount});
+                    } else {
+                        myForum.balanceCheck.call(
+                            function(err, res) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    balance = web3.fromWei(res, 'ether');
+                                    alert("You have " + balance + " ether deposited");
+                                }
+                        });
+                    } 
+                });
+            event.target.etherAmount.value = "";
+        }
+        return false;
 	}, 
 });
 
 Template.post.events({
 	'click .arrow-down': function() {
 		Posts.update(this._id, {$set: {arrowUp:!this.arrowUp}});
-		console.log("updated arrowUp");
 	},
 	'click .delete': function() {
         var id = this._id;
-        var pseuId = this.pseudoId;
-        console.log("delete sending");
-        Posts.remove(id);
-        /*
-        myForum.deletePost(pseuId, function(err, res) {
+        myForum.deletePost.call(id, function(err, res) {
             if (res) {
                 Posts.remove(id);
                 console.log("deleted post ", id);
@@ -246,20 +133,16 @@ Template.post.events({
                 alert("Not authorized to delete this post.")
             }
         });
-        */
+        
 	},
     'click .upvote': function(event) {
-        console.log("upvote clicked");
         var id = this._id;
-        console.log("ID is " + id);
         var orlikes = this.likes;
         myForum.upVote(function(err, res) {
-            console.log("result from upvote returned: " + res);
             if (res) {
-                console.log("updating likes");
                 Posts.update(id, {$set: {likes: orlikes+1}});
             } else {
-                alert("Your account is not approved.\n Approve by depositing ether");
+                alert("Your account is not approved.\nApprove by depositing ether");
             }
         });
     }
