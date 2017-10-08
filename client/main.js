@@ -46,7 +46,7 @@ Template.homePage.events({
                 completed: false,
                 upvotes: 0,
                 downvotes: 0,
-                pushed: false
+                notPushed: true
             });
             event.target.body.value = "";
         }
@@ -69,5 +69,14 @@ Template.homePage.events({
 Template.task.events({
     'click .delete': function(event) {
         Tasks.remove(this._id);
+    },
+    'click .push': function(event) {
+        Tasks.update(this._id, {$set: {notPushed: false}}, function(err, res) {
+            if (err) {
+                console.log("errored");
+            } else {
+                console.log("Task pushed");
+            }
+        });
     },
 });

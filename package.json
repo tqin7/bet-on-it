@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@gnosis.pm/gnosisjs": "^0.5.4"
+    "@gnosis.pm/gnosisjs": "^0.5.4",
+    "meteor-node-stubs": "^0.2.11"
   },
   "devDependencies": {},
   "scripts": {

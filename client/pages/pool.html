@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="taskList">
       {{#each tasks}}
-        <li>{{> pushedTask}}</li>
+        <li class="{{#if notPushed}}notShowInPool{{/if}}">{{> pushedTask}}</li>
       {{/each}}
     </ul>
   </div>
