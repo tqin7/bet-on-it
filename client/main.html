@@ -6,18 +6,30 @@
   <div class="container">
     <header>
       <h1>Tasks</h1>
-      
       <form class="new-task">
+        <div>
+          <input class="input-box" id="body" name="body" width="100" height="20" type="text" placeholder="Enter your new task...">
+        </div>
+        <div>
+          <input class="input-box" id="createTask" type="submit" value="Create">
+        </div>
       </form>
     </header>
+    <div class="tasks">
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </div>
   </div>
 </body>
 
 <template name="task">
-    <div class="task">
-    <span class="task-title">Title: {{title}}</span>
+  <div class="task">
     <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
-    <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
+    <!--
+    <p class="{{#if arrowUp}}arrowUp{{/if}}";>{{body}}</p>
+    -->
+    <p class="task">{{body}}</p>
     <button class="upvote"><span>upvote</span> <span>{{upvotes}}</span></button>
     <button class="downvote"><span>downvote</span> <span>{{downvotes}}</span></button>
     <!--
