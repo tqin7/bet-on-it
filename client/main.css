@@ -19,12 +19,12 @@ h1 {
 }
 
 .task {
-  color: white;
+  color: black;
   margin-left: 20px;
   display: block;
 }
 
-.input-box, .upvote, .downvote {
+.input-box, .upvote, .downvote, .delete {
   background-color: #a6c3d8;
   color: #21545e;
   padding: 4px 7px;
@@ -42,6 +42,10 @@ h1 {
   background-color: #506e9e;
   box-shadow: 0 5px #666;
   transform: translateY(3px);
+}
+
+.delete {
+  display: inline;
 }
 
 /* Style the navbar */
