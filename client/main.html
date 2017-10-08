@@ -21,11 +21,11 @@
         </div>
       </form>
     </header>
-    <div class="tasks">
+    <ul class="taskList">
       {{#each tasks}}
-        {{> task}}
+        <li>{{> task}}</li>
       {{/each}}
-    </div>
+    </ul>
   </div>
 
 </body>
@@ -34,17 +34,16 @@
   <div class="task">
     <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
     <!--
-    <p class="{{#if arrowUp}}arrowUp{{/if}}";>{{body}}</p>
+    <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
     -->
-    <p class="task">{{body}}</p>
+    <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
     <button class="upvote myButton"><span>upvote</span> <span>{{upvotes}}</span></button>
     <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
     <button class="delete myButton"><span>Delete</span></button>
+    <button class="push myButton"><span>Push to Pool</span></button>
     <!--
     <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
     -->
-  </div>
-  <div>
   </div>
 </template>
 

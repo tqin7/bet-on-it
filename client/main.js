@@ -39,11 +39,24 @@ Template.body.events({
                 body: body,
                 completed: false,
                 upvotes: 0,
-                downvotes: 0
+                downvotes: 0,
+                pushed: false
             });
             event.target.body.value = "";
         }
         return false;
+    },
+    'click .task': function(event) {
+        var id = this._id;
+        var c = Tasks.findOne({_id: id}).completed;
+        console.log("c is " + c);
+        Tasks.update(id, {$set: {completed: !c}}, function(err, res) {
+            if (err) {
+                console.log("errored");
+            } else {
+                console.log("c now is " + !c);
+            }
+        });
     },
 });
 
