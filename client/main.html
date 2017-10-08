@@ -6,54 +6,45 @@
   <div class="container">
     <header>
       <h1>Tasks</h1>
-      <h2>Gnosis-tasks</h2>
-      <div id="navbar">
-        <a href="#home">Home</a>
-        <a href="#news">Vote</a>
-        <a href="#contact">Completed</a>
-        <a href="#contact">Profile</a>
-      </div>
+
       <form class="new-task">
-        <div>
-          <input class="input-box" id="body" name="body" width="100" height="20" type="text" placeholder="Enter your new task...">
-        </div>
-        <div>
-          <input class="input-box myButton" id="createTask" type="submit" value="Create">
-        </div>
       </form>
     </header>
-    <div class="tasks">
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </div>
   </div>
 
   <div id="navbar">
       <a href="#home">Home</a>
       <a href="#news">Vote</a>
-      <a href="#contact">Completed</a>
+      <a href="#contact">Pool</a>
       <a href="#contact">Profile</a>
   </div>
+  <div id="myDIV" class="header">
+      <h2>My To Do List</h2>
+      <input type="text" id="myInput" placeholder="Title...">
+      <span onclick="newElement()" class="addBtn">Add</span>
+  </div>
 
+    <ul id="myUL">
+      <li>Hit the gym</li>
+      <li class="checked">Pay bills</li>
+      <li>Meet George</li>
+      <li>Buy eggs</li>
+      <li>Read a book</li>
+      <li>Organize office</li>
+    </ul>
 
 </body>
 
 <template name="task">
-  <div class="task">
+    <div class="task">
+    <span class="task-title">Title: {{title}}</span>
     <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
-    <!--
-    <p class="{{#if arrowUp}}arrowUp{{/if}}";>{{body}}</p>
-    -->
-    <p class="task">{{body}}</p>
-    <button class="upvote myButton"><span>upvote</span> <span>{{upvotes}}</span></button>
-    <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
-    <button class="delete myButton"><span>Delete</span></button>
+    <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
+    <button class="upvote"><span>upvote</span> <span>{{upvotes}}</span></button>
+    <button class="downvote"><span>downvote</span> <span>{{downvotes}}</span></button>
     <!--
     <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
     -->
-  </div>
-  <div>
   </div>
 </template>
 
