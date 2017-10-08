@@ -7,14 +7,14 @@ ul {
     padding: 0;
 }
 
-ul li {
+Tian {
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
     background: #eee;
-    font-size: 17px;
+    font-size: 10px;
     transition: 0.2s;
-
+    list-style-type: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

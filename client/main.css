@@ -3,6 +3,7 @@ body {
   font-size: 20px;
   background: #F9F4F4;
   margin-bottom: 0px;
+
 }
 
 header {
@@ -19,11 +20,16 @@ h1 {
 }
 
 .task {
-  color: black;
-  margin-left: 20px;
+    text-align: center;
+  color:#868A8C;
+  margin-left: 0;
   display: block;
-  font-family: Chalkboard;
+  font-size: 30px;
+  font-family: Arial;
   font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin-top:50px;
+  border-radius: 12px;
 }
 
 .checked {
@@ -51,15 +57,18 @@ ul li.checked::before {
 }
 
 .input-box, .upvote, .downvote, .delete, .complete, .push {
-  background-color: #a6c3d8;
-  color: #21545e;
-  padding: 4px 7px;
+  background-color: #B2C5CE;
   border: none;
-  font-size: 17px;
-  font-weight: bold;
-  font-family: Chalkboard;
-  margin-top: 4px;
-  cursor: pointer;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-top:10px;
+  padding-left: 20px;
+  text-font: 50px;
 }
 
 .input-box #createTask {
@@ -77,14 +86,19 @@ ul li.checked::before {
 }
 
 .delete {
-  display: inline;
+    margin:20px 0 20px -830px;
+    display: inline;
 }
 
 .push {
-  float: right;
+    float:right;
+  margin:20px 20px 0 0;
   display: inline;
 }
-
+.upvote, .downvote {
+    margin:20px 0 20px 20px;
+    display: inline;
+}
 .notShowInPool {
   display: none;
 }
@@ -102,4 +116,8 @@ ul li.checked::before {
   float: right;
   float: top;
   margin: 0px 0px;
+}
+
+.navbar-default {
+    color: #F8F8F8;
 }

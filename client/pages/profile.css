@@ -35,3 +35,15 @@ img {
     transform: translate(-50%, -50%);
 
 }
+h1 {
+    border-radius: 50%;
+    height: 7pxl;
+    width: 5pxl;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: White;
+    text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+
+}

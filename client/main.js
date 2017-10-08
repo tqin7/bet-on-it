@@ -16,7 +16,7 @@ oneEther = web3.toWei(1, "ether");
 Template.homePage.helpers({
     tasks: function() {
         return Tasks.find();
-    }, 
+    },
 });
 
 Template.poolPage.helpers({
@@ -61,7 +61,6 @@ Template.poolPage.events({
             }
         });
     },
-
 });
 
 Template.homePage.events({
