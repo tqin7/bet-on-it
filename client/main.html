@@ -4,45 +4,6 @@
 
 <body>
   <div class="container">
-    <header>
-      <h2>Gnosis-tasks</h2>
-      <form class="new-task">
-        <div>
-          <input class="input-box" id="body" name="body" width="100" height="20" type="text" placeholder="Enter your new task...">
-        </div>
-        <div>
-          <input class="input-box myButton" id="createTask" type="submit" value="Create">
-        </div>
-      </form>
-    </header>
-    <ul class="taskList">
-      {{#each tasks}}
-        <li>{{> task}}</li>
-      {{/each}}
-    </ul>
   </div>
 </body>
-
-<template name="task">
-  <div class="task">
-    <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
-    <!--
-    <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
-    -->
-    <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
-    <button class="upvote myButton"><span>upvote</span> <span>{{upvotes}}</span></button>
-    <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
-    <button class="delete myButton"><span>Delete</span></button>
-    <button class="push myButton"><span>Push to Pool</span></button>
-    <!--
-    <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
-    -->
-  </div>
-</template>
-
-<template name="event">
-
-</template>
-
-
 
