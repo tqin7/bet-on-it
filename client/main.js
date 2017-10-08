@@ -41,11 +41,14 @@ Template.body.events({
                 upvotes: 0,
                 downvotes: 0
             });
+            event.target.body.value = "";
         }
         return false;
     },
 });
 
 Template.task.events({
-
+    'click .delete': function(event) {
+        Tasks.remove(this._id);
+    },
 });
