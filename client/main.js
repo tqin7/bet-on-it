@@ -21,13 +21,19 @@ function myFunction() {
   }
 }
 
-Template.body.helpers({
+Template.homePage.helpers({
     tasks: function() {
         return Tasks.find();
     },
 });
 
-Template.body.events({
+Template.poolPage.helpers({
+    tasks: function() {
+        return Tasks.find();
+    }, 
+});
+
+Template.homePage.events({
     'submit .new-task': function(event) {
         console.log("new task submitted");
         var body = event.target.body.value;

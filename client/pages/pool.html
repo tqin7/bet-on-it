@@ -1,0 +1,18 @@
+<template name="poolPage">
+  <div class="container">
+    <ul class="taskList">
+      {{#each tasks}}
+        <li>{{> pushedTask}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="pushedTask">
+  <div class="task">
+    <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
+    <button class="upvote myButton"><span>upvote</span> <span>{{upvotes}}</span></button>
+    <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
+  </div>
+</template>
+
