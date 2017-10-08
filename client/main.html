@@ -10,6 +10,11 @@
       <form class="new-task">
       </form>
     </header>
+    <ul class="taskList">
+      {{#each tasks}}
+        <li>{{> task}}</li>
+      {{/each}}
+    </ul>
   </div>
 
   <div id="navbar">
@@ -39,9 +44,14 @@
     <div class="task">
     <span class="task-title">Title: {{title}}</span>
     <div class="arrow-down" onclick="this.classList.toggle('active')"></div>
+    <!--
     <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
-    <button class="upvote"><span>upvote</span> <span>{{upvotes}}</span></button>
-    <button class="downvote"><span>downvote</span> <span>{{downvotes}}</span></button>
+    -->
+    <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
+    <button class="upvote myButton"><span>upvote</span> <span>{{upvotes}}</span></button>
+    <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
+    <button class="delete myButton"><span>Delete</span></button>
+    <button class="push myButton"><span>Push to Pool</span></button>
     <!--
     <button class="delete {{#if arrowUp}}arrowUp{{/if}}"><span>Delete</span></button>
     -->

@@ -24,7 +24,30 @@ h1 {
   display: block;
 }
 
-.input-box, .upvote, .downvote, .delete {
+.checked {
+    color: #a86250;
+    text-decoration: line-through;
+}
+
+
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.new-task {
+  text-align: center;
+}
+
+.input-box, .upvote, .downvote, .delete, .push {
   background-color: #a6c3d8;
   color: #21545e;
   padding: 4px 7px;
@@ -36,7 +59,13 @@ h1 {
   cursor: pointer;
 }
 
-.myButton:hover {background-color: #5c81bc}
+.input-box #createTask {
+  cursor: auto;
+}
+
+.myButton:hover {
+  background-color: #5c81bc
+}
 
 .myButton:active {
   background-color: #506e9e;
@@ -45,6 +74,11 @@ h1 {
 }
 
 .delete {
+  display: inline;
+}
+
+.push {
+  float: right;
   display: inline;
 }
 
