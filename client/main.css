@@ -21,6 +21,7 @@ h1 {
 .task {
   color: white;
   margin-left: 20px;
+  display: block;
 }
 
 .input-box, .upvote, .downvote {
@@ -33,4 +34,12 @@ h1 {
   font-family: Chalkboard;
   margin-top: 4px;
   cursor: pointer;
+}
+
+.myButton:hover {background-color: #5c81bc}
+
+.myButton:active {
+  background-color: #506e9e;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
 }
