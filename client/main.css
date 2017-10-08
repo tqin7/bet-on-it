@@ -1,0 +1,89 @@
+body {
+  font-family: sans-serif;
+  font-size: 20px;
+  background: #F9F4F4;
+  margin-bottom: 0px;
+}
+
+header {
+  padding: 0px 15px 15px 15px;
+  position: relative;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+.task {
+  color: black;
+  margin-left: 20px;
+  display: block;
+  font-family: Chalkboard;
+  font-weight: bold;
+}
+
+.checked {
+    color: #a86250;
+    text-decoration: line-through;
+}
+
+
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.new-task {
+  text-align: center;
+}
+
+.input-box, .upvote, .downvote, .delete, .push {
+  background-color: #a6c3d8;
+  color: #21545e;
+  padding: 4px 7px;
+  border: none;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: Chalkboard;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.input-box #createTask {
+  cursor: auto;
+}
+
+.myButton:hover {
+  background-color: #5c81bc
+}
+
+.myButton:active {
+  background-color: #506e9e;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+}
+
+.delete {
+  display: inline;
+}
+
+.push {
+  float: right;
+  display: inline;
+}
+
+#body {
+  cursor: auto;
+}
