@@ -9,12 +9,28 @@
           <input class="input-box myButton" id="createTask" type="submit" value="Create">
         </div>
       </form>
+      <div class="send-and-withdraw">
+        <div class="send-ether">
+          <form class="send-ether">
+            <input id="etherAmount" type="number" name="etherAmount" placeholder="Amount of ether">
+            <input class="delete" id="send" type="submit" value="Send Ether">
+          </form>
+        </div>
+        <div class="withdraw-ether">
+          <form class="withdraw-ether">
+            <input id="etherAmount" type="number" name="etherAmount" placeholder="Amount of ether">
+            <input class="delete" id="withdraw" type="submit" value="Withdraw Ether">
+          </form>
+        </div>
+      </div>
     </header>
-    <ul class="taskList">
-      {{#each tasks}}
-        <li>{{> task}}</li>
-      {{/each}}
-    </ul>
+    <div class="needGoDown">
+      <ul class="taskList">
+        {{#each tasks}}
+          <li>{{> task}}</li>
+        {{/each}}
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -25,6 +41,7 @@
     <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
     -->
     <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
+    <button class="complete myButton"><span>Complete</span></button>
     <button class="delete myButton"><span>Delete</span></button>
     <button class="push myButton"><span>Push to Pool</span></button>
     <!--

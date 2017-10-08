@@ -47,9 +47,10 @@ ul li.checked::before {
 
 .new-task {
   text-align: center;
+  float: left;
 }
 
-.input-box, .upvote, .downvote, .delete, .push {
+.input-box, .upvote, .downvote, .delete, .complete, .push {
   background-color: #a6c3d8;
   color: #21545e;
   padding: 4px 7px;
@@ -90,4 +91,15 @@ ul li.checked::before {
 
 #body {
   cursor: auto;
+  background-color: #ffffaa;
+}
+
+.send-ether .withdraw-ether {
+  display: inline-block;
+}
+
+.send-and-withdraw {
+  float: right;
+  float: top;
+  margin: 0px 0px;
 }
