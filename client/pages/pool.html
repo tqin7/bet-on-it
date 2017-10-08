@@ -1,6 +1,6 @@
 <template name="poolPage">
   <div class="container">
-    <ul class="taskList">
+    <ul style="list-style-type: none;" class="taskList">
       {{#each tasks}}
         <li class="{{#if notPushed}}notShowInPool{{/if}}">{{> pushedTask}}</li>
       {{/each}}
@@ -15,4 +15,3 @@
     <button class="downvote myButton"><span>downvote</span> <span>{{downvotes}}</span></button>
   </div>
 </template>
-
