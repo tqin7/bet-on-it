@@ -21,6 +21,7 @@ h1 {
 .task {
   color: white;
   margin-left: 20px;
+  margin-bottom: 20px;
   display: block;
 }
 
