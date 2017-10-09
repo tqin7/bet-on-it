@@ -6,7 +6,7 @@ import './main.html';
 Tasks = new Mongo.Collection('tasks');
 Events = new Mongo.Collection('events');
 
-contractAddr = '0x8A3A405D897E665CF7aACDd8bF4be47dD96C6e05';
+contractAddr = '0xE0374Bc9f86CF59BD402d581d53340A79441d86A';
 abi = [{"constant":false,"inputs":[{"name":"amount","type":"uint256"}],"name":"withdraw","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"pushRequest","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"string"}],"name":"downVote","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"balanceCheck","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"vote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalFundGetter","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"string"},{"name":"supportersWin","type":"bool"}],"name":"settle","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"destroy","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"approveAccount","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"string"}],"name":"upVote","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"string"}],"name":"pushTask","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"inputs":[],"payable":true,"stateMutability":"payable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_voter","type":"address"}],"name":"Vote","type":"event"}];
 var myContract = web3.eth.contract(abi);
 var ctr = myContract.at(contractAddr);
@@ -120,7 +120,7 @@ Template.homePage.events({
     }, 
     'submit .withdraw-ether': function(event) {
         var amount = event.target.etherAmount.value;
-        var weiAmount = web3.toWei(amount, "ether")
+        var weiAmount = web3.toWei(amount, "ether");
         if (amount <= 0) {
             alert("Please specify positive amount of ether");
         } else {
