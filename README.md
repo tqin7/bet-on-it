@@ -12,4 +12,4 @@ The people who lost the bet will lost their deposits and people who betted for y
 generating a powerful motivation.
 
 Future implementations include: implementing oracles as the event outcome judge, integerating Gnosis prediction market
-APIs, and more security.
+APIs, creating groups, and adding security features.
