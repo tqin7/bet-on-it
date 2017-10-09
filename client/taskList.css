@@ -7,10 +7,11 @@ ul {
     padding: 0;
 }
 
-Tian {
+#Tian {
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 0px 8px 12px 10px;
+    margin-top: 170px;
     background: #eee;
     font-size: 10px;
     transition: 0.2s;
