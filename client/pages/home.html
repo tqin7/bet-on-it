@@ -24,7 +24,7 @@
         </div>
       </div>
     </header>
-    <div id="Tian">
+    <div id="tasks">
         <ul style="list-style-type: none;" class="menu">
           {{#each tasks}}
             <li>{{> task}}</li>
@@ -40,7 +40,7 @@
     <!--
     <p class="{{#if arrowUp}}arrowUp{{/if}}">{{body}}</p>
     -->
-    <p class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
+    <p id= "text" class="taskDesc {{#if completed}}checked{{/if}}">{{body}}</p>
     <button class="complete myButton"><span>Complete</span></button>
     <button class="delete myButton"><span>Delete</span></button>
     <button class="push myButton"><span>Push to Pool</span></button>
