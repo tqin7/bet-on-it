@@ -1,5 +1,5 @@
 # bet-on-it
-Task tracking website powered by smart contracts
+Task tracking website powered by smart contracts. [Winner of Cal Hacks 4.0](https://devpost.com/software/ethereum-tasks)
 
 A website that tracks your to-dos. 
 You can push your tasks to the pool, a public task sharing space. This process will charge you some amount of ether but
